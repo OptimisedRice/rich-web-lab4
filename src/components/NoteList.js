@@ -1,24 +1,17 @@
 import React from 'react';
 import Note from "./Note";
-
+import styles from "../styles/NoteList.module.css"
 const NoteList = ({data, onDelete, onEdit}) => {
-
   return (
-    <div style={styles.container}>
-      {data.map((note, index) => {
-          return <Note text={note.text} id={note.id}
+    <div className={styles.container}>
+      {data.map((note) => {
+          return <Note data={note}
                        onDelete={() => onDelete(note.id)}
                        onEdit={onEdit}
-                       key={index}/>
+                       key={note.id}/>
       })}
     </div>
   );
 };
 
-const styles = {
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  }
-}
 export default NoteList;

@@ -1,0 +1,35 @@
+.input {
+    font-size: 40px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.add {
+    margin-left: 10px;
+    height: 60px;
+    width: 60px;
+    font-size: 40px;
+    border-radius: 30px;
+    background-color: lightgreen;
+}
+
+.add:hover {
+    background-color: green;
+}
+.container {
+    display: flex;
+    height: 10vh;
+    align-items: center;
+    padding: 20px;
+    z-index: 5;
+}
+
+.fileUpload {
+    font-size: 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
