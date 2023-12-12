@@ -44,6 +44,12 @@ const Note = ({data, onDelete, onEdit}) => {
     setDrag(!drag);
   }
 
+  const handleRelease = () => {
+    if(drag) {
+      setDrag(false)
+    }
+  }
+
   const handleMove = (e) => {
     if(drag) {
       setLocation({
@@ -52,10 +58,24 @@ const Note = ({data, onDelete, onEdit}) => {
       })
     }
   }
+
+  const changeColor = (e) => {
+    console.log(e.button)
+    if(e.button === 2) {
+      const index = colours.findIndex(item => {
+        return item === colour;
+      });
+      console.log("test", index)
+      index === colours.length - 1 ? setColour(colours[0]) : setColour(colours[index + 1])
+    }
+  }
   return (
     <div className={styles.container}
          style={{backgroundColor: colour, top: location.y, left: location.x}}
          onMouseMove={handleMove}
+         onMouseDown={changeColor}
+         onClick={handleRelease}
+         onContextMenu={(e)=> e.preventDefault()}
           ref={refContainer}>
 
       <div style={{display: "flex", flexDirection: "row", width: "100%"}}>
@@ -70,7 +90,7 @@ const Note = ({data, onDelete, onEdit}) => {
           <button onClick={onDelete} className={styles.delete}>X</button>
         </div>
       </div>
-      {edit ? <textarea onChange={updateContent} style={{resize: "vertical"}}>{content}</textarea> : <p>{content}</p>}
+      {edit ? <textarea onChange={updateContent} style={{resize: "vertical"}} value={content}/>: <p>{content}</p>}
       {image && <img src={image} alt={"note_image"}/>}
     </div>
   );
